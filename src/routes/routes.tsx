@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import App from '../App';
-import FavoritesPage from '../page/favorites-page';
+ import FavoritesPage from '../page/favorites-page';
+import { MainPage } from '../page/main';
 
 export default function RoutesComponent() {
   return (
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="/favorites-page" element={<FavoritesPage  />} />
+      <Route path="/" element={<MainPage />} />
+      <Route path="/favorites-page" element={<FavoritesPage />} />
     </Routes>
   );
 }
