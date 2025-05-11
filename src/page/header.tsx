@@ -6,8 +6,8 @@ function Header() {
       <header className="header">
          <div className="head-header">
             <div className="text-header">
-               <Link to="/">Все котики</Link>
-               <Link to="/favorites-page">Избранные котики</Link>
+               <Link to="/" className="retro">Все котики</Link>
+               <Link to="/favorites-page" className="retro">Избранные котики</Link>
             </div>
          </div>
       </header>
