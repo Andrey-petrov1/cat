@@ -41,6 +41,6 @@ return(
 
 )
 }
-// тут ещеразобраться
+
 
 export default CatCard;

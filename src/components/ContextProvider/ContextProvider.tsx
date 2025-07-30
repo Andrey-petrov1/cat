@@ -20,7 +20,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
    const [favorite, setFavorite] = useState<Cat[]>([]);
 
    const toggleFavorite = (cat: Cat) => {
-      //catsId это передаваемый параметр, но как он понимает что нужно получить cat.id из API
+      
       if (favorite.find((item) => item.id === cat.id)) {
          setFavorite(favorite.filter((item) => item.id !== cat.id));
       } else {
