@@ -3,8 +3,11 @@ import Pagination from "./../shared/ui/pagination.tsx";
 import CatCard from "./../shared/ui/CatCard.tsx";
 import { useQuery } from "@tanstack/react-query";
 import { useCatStore } from "../components/ContextProvider/useCatStore.ts";
-import TodoList from "../components/TodoList";
+import TodoList from "../components/TodoList.jsx";
 import InputField from "../components/InputField";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../store/todoSlice";
+
 const headers = new Headers({
    "Content-Type": "application/json",
    "x-api-key":
@@ -39,42 +42,22 @@ export const MainPage = () => {
 
    const { favorite, toggleFavorite } = useCatStore();
 
+   const dispatch = useDispatch();
+   const [text, setText] = useState("");
+   const addTask = () => dispatch(addTodo({text}));
 
+   const toggleTodoComplite = (todoId: string) => {
+      // setTodos(
+      //    todos.map((todo) => {
+      //       if (todo.id !== todoId) return todo;
+      //       return {
+      //          ...todo,
+      //       };
+      //    })
+      // );
+   };
 
-                     
-                     const [todos, setTodos] = useState<Todo[]>([]);
-                     const [text, setText] = useState("");
-
-                     
-                     const addTodo = () => {
-                        if (text.trim().length) {
-                           setTodos([
-                              ...todos,
-                              {
-                                 id: new Date().toISOString(),
-                                 text,
-                                 complited: false,
-                              },
-                           ]);
-                           setText("");
-                        }
-                     };
-
-                     const toggleTodoComplite = (todoId: string) => {
-                        setTodos(
-                           todos.map((todo) => {
-                              if (todo.id !== todoId) return todo;
-
-                              return {
-                                 ...todo,
-                              };
-                           })
-                        );
-                     };
-
-                     const removeTodo = (todoId: string) => {
-                        setTodos(todos.filter((todo) => todo.id !== todoId));
-                     };
+   
 
    // замена юзэффект
    const fetchCats = async (): Promise<ICat[]> => {
@@ -146,13 +129,11 @@ export const MainPage = () => {
             ))
          )}
 
-
-         <InputField text={text} handleInput={setText} handleSubmit={addTodo} />
+         <InputField text={text} handleInput={setText} handleSubmit={addTask} />
 
          <TodoList
-            todos={todos}
             toggleTodoComplite={toggleTodoComplite}
-            removeTodo={removeTodo}
+           
          />
 
          <Pagination
