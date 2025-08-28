@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux'; 'react-redux';
 import { removeTodo, toggleTodoComplete } from '../store/todoSlice';
 
-const TodoItem = ({id, text}) => {
+const TodoItem = ({id, title}) => {
   const dispatch = useDispatch( );
   return (
     <li>
@@ -10,7 +10,7 @@ const TodoItem = ({id, text}) => {
         
          onChange={() => dispatch(toggleTodoComplete(id))} />
 
-               <span>{text}</span>
+               <span>{title}</span>
                <span className="delete" style={{color: 'red'}} onClick={() => dispatch(removeTodo({id}))}>&times;</span>
     </li>
   )

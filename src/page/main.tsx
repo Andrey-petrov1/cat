@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "./../shared/ui/pagination.tsx";
 import CatCard from "./../shared/ui/CatCard.tsx";
 import { useQuery } from "@tanstack/react-query";
@@ -6,7 +6,7 @@ import { useCatStore } from "../components/ContextProvider/useCatStore.ts";
 import TodoList from "../components/TodoList.jsx";
 import InputField from "../components/InputField";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../store/todoSlice";
+import { addTodo, fetchTodos } from "../store/todoSlice";
 
 const headers = new Headers({
    "Content-Type": "application/json",
@@ -57,6 +57,12 @@ export const MainPage = () => {
       // );
    };
 
+
+   
+
+   useEffect(() => {
+      dispatch(fetchTodos());
+   }, [dispatch]);
    
 
    // замена юзэффект
